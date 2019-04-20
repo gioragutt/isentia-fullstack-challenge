@@ -1,4 +1,9 @@
 const axios = require('axios').create();
+const querystring = require('querystring');
+
+const {
+  loggers: { logger },
+} = require('@welldone-software/node-toolbelt');
 
 const { flickrPublicFeedApi } = require('./config');
 
@@ -11,7 +16,7 @@ const constructFeedPath = (tags = '', tagmode = 'any') => {
   if (!tags) {
     return flickrPublicFeedApi;
   }
-  return `${flickrPublicFeedApi}&tags=${tags}&tagmode=${tagmode}`;
+  return `${flickrPublicFeedApi}&tags=${querystring.escape(tags)}&tagmode=${tagmode}`;
 };
 
 const parseRawFeedItem = ({
@@ -36,6 +41,7 @@ const parseRawFeedItem = ({
 };
 
 const fetchFlickrPublicFeed = async (tags, tagmode) => {
+  logger.info(tags, 'got tags');
   const feedPath = constructFeedPath(tags, tagmode);
   const { data: feed } = await axios.get(feedPath);
   const cleanedupUpFeed = JSON.parse(cleanupJsonFormat(feed));
