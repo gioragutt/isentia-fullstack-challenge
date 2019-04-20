@@ -14,11 +14,32 @@ const constructFeedPath = (tags = '') => {
   return `${flickrPublicFeedApi}&tags=${tags}`;
 };
 
+const parseRawFeedItem = ({
+  tags: rawTags,
+  media: { m: image },
+  published,
+  // eslint-disable-next-line camelcase
+  date_taken,
+  author_id: authorId,
+  ...rest
+}) => {
+  const tags = rawTags ? rawTags.split(' ') : [];
+
+  return {
+    ...rest,
+    tags,
+    image,
+    published: new Date(published),
+    dateTaken: new Date(date_taken),
+    authorId,
+  };
+};
+
 const fetchFlickrPublicFeed = async (tags) => {
   const feedPath = constructFeedPath(tags);
   const { data: feed } = await axios.get(feedPath);
   const cleanedupUpFeed = JSON.parse(cleanupJsonFormat(feed));
-  return cleanedupUpFeed.items;
+  return cleanedupUpFeed.items.map(parseRawFeedItem);
 };
 
 module.exports = {
