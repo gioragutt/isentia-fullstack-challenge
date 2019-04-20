@@ -1,5 +1,9 @@
-<ul class="feed">
+<ul class="feed" *ngIf="feedItems.length > 0; else noItemsInFeed">
   <li *ngFor="let item of feedItems" class="feed-item-wrapper">
     <app-feed-item [feedItem]="item"></app-feed-item>
   </li>
 </ul>
+
+<ng-template #noItemsInFeed>
+  <h1>No items in the feed!</h1>
+</ng-template>
