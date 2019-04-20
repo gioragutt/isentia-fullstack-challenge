@@ -1,0 +1,44 @@
+{
+  "name": "isentia-fullstack-challenge-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write",
+    "lint": "eslint 'src/**/*.js' --fix",
+    "start": "node . | pino-pretty",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@welldone-software/node-toolbelt": "^1.6.2",
+    "body-parser": "^1.18.3",
+    "common-tags": "^1.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "pino": "^5.12.2",
+    "pino-pretty": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-promise": "^4.1.1",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier-eslint-cli": "^4.7.1"
+  }
+}
