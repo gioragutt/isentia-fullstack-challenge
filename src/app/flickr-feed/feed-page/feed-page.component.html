@@ -1,5 +1,18 @@
-<ul>
-  <li *ngFor="let item of feed | async">
-    {{item | json}}
+<!-- <mat-grid-list cols="2" rowHeight="1:1" [gutterSize]="20">
+  <mat-grid-tile *ngFor="let item of feed | async">
+    <app-feed-item [feedItem]="item"></app-feed-item>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<!-- <div class="grid-container">
+  <div *ngFor="let item of feed | async" class="grid-item">
+    <app-feed-item [feedItem]="item"></app-feed-item>
+  </div>
+</div> -->
+
+
+<ul class="feed">
+  <li *ngFor="let item of feed | async" class="feed-item-wrapper">
+    <app-feed-item [feedItem]="item"></app-feed-item>
   </li>
 </ul>

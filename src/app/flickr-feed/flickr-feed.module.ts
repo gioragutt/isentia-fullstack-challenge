@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FeedPageComponent } from './feed-page/feed-page.component';
+import { FeedItemComponent } from './feed-item/feed-item.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    FeedPageComponent
+    FeedPageComponent,
+    FeedItemComponent,
   ],
   imports: [
-    CommonModule
+    SharedModule,
   ],
   exports: [
     FeedPageComponent

@@ -1,0 +1,17 @@
+.grid-container {
+  display: grid;
+
+  .grid-item {
+    display: inline-grid;
+  }
+}
+
+.feed {
+  margin: auto;
+  max-width: 600px;
+
+  .feed-item-wrapper {
+    margin-bottom: 15px;
+    list-style-type: none;
+  }
+}
