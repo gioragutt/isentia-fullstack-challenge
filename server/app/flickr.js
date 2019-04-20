@@ -7,8 +7,16 @@ const cleanupJsonFormat = (feed) => {
   return feed.substring(beginningOfJsonIndex, feed.length - 1);
 };
 
-const fetchFlickrPublicFeed = async () => {
-  const { data: feed } = await axios.get(flickrPublicFeedApi);
+const constructFeedPath = (tags = '') => {
+  if (!tags) {
+    return flickrPublicFeedApi;
+  }
+  return `${flickrPublicFeedApi}&tags=${tags}`;
+};
+
+const fetchFlickrPublicFeed = async (tags) => {
+  const feedPath = constructFeedPath(tags);
+  const { data: feed } = await axios.get(feedPath);
   const cleanedupUpFeed = JSON.parse(cleanupJsonFormat(feed));
   return cleanedupUpFeed.items;
 };

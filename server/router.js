@@ -7,6 +7,6 @@ const { fetchFlickrPublicFeed } = require('./app/flickr');
 
 const router = new Router();
 
-router.get('/feed', _(fetchFlickrPublicFeed));
+router.get('/feed', _(({ query: { tags } }) => fetchFlickrPublicFeed(tags)));
 
 module.exports = router;
