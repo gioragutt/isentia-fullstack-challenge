@@ -4,4 +4,5 @@ const {
 
 module.exports = mapEnv({
   port: 3000,
+  flickrPublicFeedApi: 'https://api.flickr.com/services/feeds/photos_public.gne?format=json',
 });

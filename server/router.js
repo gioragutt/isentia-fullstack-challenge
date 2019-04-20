@@ -1,17 +1,12 @@
 const { Router } = require('express');
 const {
-  loggers: { logger },
   expressHelpers: { createApiEndpoint: _ },
 } = require('@welldone-software/node-toolbelt');
 
+const { fetchFlickrPublicFeed } = require('./app/flickr');
+
 const router = new Router();
 
-router.get(
-  '/lobbies',
-  _(() => {
-    logger.info("All's good!");
-    return ['just an example'];
-  }),
-);
+router.get('/feed', _(fetchFlickrPublicFeed));
 
 module.exports = router;

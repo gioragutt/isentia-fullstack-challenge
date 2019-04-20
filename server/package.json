@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@welldone-software/node-toolbelt": "^1.6.2",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "common-tags": "^1.8.0",
     "cors": "^2.8.5",
