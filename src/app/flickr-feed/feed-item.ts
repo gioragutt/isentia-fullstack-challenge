@@ -6,6 +6,6 @@ export interface FeedItem {
   published: Date;
   description: string;
   author: string;
-  authorId: number;
+  authorId: string;
   tags: string[];
 }

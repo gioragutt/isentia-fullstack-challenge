@@ -1,7 +1,10 @@
-// mat-card {
-//   // width: 100%;
+.container {
+  position: relative;
 
-//   [mat-card-image] {
-//     height: 100%;
-//   }
-// }
+  .debug-info {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 20;
+  }
+}

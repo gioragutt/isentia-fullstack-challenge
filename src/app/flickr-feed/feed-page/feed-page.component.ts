@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FlickrFeedService } from '../flickr-feed.service';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, Subject, BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FeedItem } from '../feed-item';
+import { TagsService, Tagmode } from '../tags.service';
 
 @Component({
   selector: 'app-feed-page',
@@ -9,7 +11,20 @@ import { FeedItem } from '../feed-item';
   styleUrls: ['./feed-page.component.scss']
 })
 export class FeedPageComponent {
-  feed: Observable<FeedItem[]> = this.feedService.fetchFeed();
+  private refresh$ = new BehaviorSubject(undefined);
 
-  constructor(private feedService: FlickrFeedService) { }
+  feed: Observable<FeedItem[]> = combineLatest(
+    this.tagsService.tags$(),
+    this.tagsService.tagmode$(),
+    this.refresh$,
+  ).pipe(
+    switchMap(([tags, tagmode, _]: [string[], Tagmode, any]) =>
+      this.feedService.fetchFeed(tags, tagmode))
+  );
+
+  constructor(private feedService: FlickrFeedService, private tagsService: TagsService) { }
+
+  refresh(): void {
+    this.refresh$.next(undefined);
+  }
 }

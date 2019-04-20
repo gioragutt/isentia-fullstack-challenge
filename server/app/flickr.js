@@ -7,11 +7,11 @@ const cleanupJsonFormat = (feed) => {
   return feed.substring(beginningOfJsonIndex, feed.length - 1);
 };
 
-const constructFeedPath = (tags = '') => {
+const constructFeedPath = (tags = '', tagmode = 'any') => {
   if (!tags) {
     return flickrPublicFeedApi;
   }
-  return `${flickrPublicFeedApi}&tags=${tags}`;
+  return `${flickrPublicFeedApi}&tags=${tags}&tagmode=${tagmode}`;
 };
 
 const parseRawFeedItem = ({
@@ -35,8 +35,8 @@ const parseRawFeedItem = ({
   };
 };
 
-const fetchFlickrPublicFeed = async (tags) => {
-  const feedPath = constructFeedPath(tags);
+const fetchFlickrPublicFeed = async (tags, tagmode) => {
+  const feedPath = constructFeedPath(tags, tagmode);
   const { data: feed } = await axios.get(feedPath);
   const cleanedupUpFeed = JSON.parse(cleanupJsonFormat(feed));
   return cleanedupUpFeed.items.map(parseRawFeedItem);

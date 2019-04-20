@@ -10,6 +10,10 @@ import {
   MatListModule,
   MatCardModule,
   MatGridListModule,
+  MatChipsModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatTooltipModule,
 } from '@angular/material';
 
 @NgModule({
@@ -23,6 +27,10 @@ import {
     MatListModule,
     MatCardModule,
     MatGridListModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
   ]
 })
 export class SharedModule { }

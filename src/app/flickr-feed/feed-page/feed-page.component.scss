@@ -1,17 +1,18 @@
-.grid-container {
-  display: grid;
-
-  .grid-item {
-    display: inline-grid;
-  }
-}
-
-.feed {
+.container {
+  padding-top: 20px;
   margin: auto;
   max-width: 600px;
 
-  .feed-item-wrapper {
-    margin-bottom: 15px;
-    list-style-type: none;
+  .contol-bar {
+    display: flex;
+
+    .tags-input {
+      flex: 1;
+    }
+
+    .refresh {
+      height: 100%;
+      align-self: center;
+    }
   }
 }

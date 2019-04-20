@@ -1,0 +1,19 @@
+<div class="tag-list-container">
+  <mat-form-field class="tagmode">
+    <mat-select [value]="tagmode$ | async" (valueChange)="tagmodeChanged($event)">
+      <mat-option *ngFor="let tagmode of tagmodes" [value]="tagmode">
+        {{tagmode | titlecase}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="tags">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of tags$ | async" [removable]="true" (removed)="remove(tag)">
+        {{tag}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Add tags..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</div>

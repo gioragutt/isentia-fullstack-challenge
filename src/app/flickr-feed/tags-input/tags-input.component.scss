@@ -1,0 +1,15 @@
+.tag-list-container {
+  display: flex;
+
+  *:not(:first-child) {
+    margin-left: 10px;
+  }
+
+  .tagmode {
+    flex: 1;
+  }
+
+  .tags {
+    flex: 4;
+  }
+}

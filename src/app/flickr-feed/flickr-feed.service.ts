@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { FeedItem } from './feed-item';
 import { Observable } from 'rxjs';
+import { Tagmode } from './tags.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 export class FlickrFeedService {
   constructor(private http: HttpClient) { }
 
-  fetchFeed(): Observable<FeedItem[]> {
-    return this.http.get<FeedItem[]>('/api/v1/feed');
+  fetchFeed(tags: string[], tagmode: Tagmode): Observable<FeedItem[]> {
+    const tagsQueryString = tags.join(',');
+    return this.http.get<FeedItem[]>(`/api/v1/feed?tags=${tagsQueryString}&tagmode=${tagmode}`);
   }
 }
