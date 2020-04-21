@@ -30,7 +30,7 @@
     "common-tags": "^1.8.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "pino": "^5.12.2",
+    "pino": "^6.0.0",
     "pino-pretty": "^2.6.0"
   },
   "devDependencies": {
